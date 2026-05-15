@@ -485,46 +485,53 @@ const SHEET_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRLNN6o_qM098
 let MEETINGS = [];
 let NEXT, PAST_COUNT, DAYS_LEFT;
 
+function parseLine(line){
+  const cols=[]; let cur="",inQ=false;
+  for(let i=0;i<line.length;i++){
+    const c=line[i];
+    if(c==='"\'){ inQ=!inQ; }
+    else if(c===','&&!inQ){ cols.push(cur.trim()); cur=""; }
+    else cur+=c;
+  }
+  cols.push(cur.trim());
+  return cols;
+}
+
 function parseCSV(text){
+  const clean = text.replace(/^\uFEFF/,"").replace(/\r\n/g,"\n").replace(/\r/g,"\n");
+  const lines  = clean.trim().split("\n");
+  if(lines.length < 2) return [];
+
+  // Map column names → indices (resilient to column order)
+  const headers = parseLine(lines[0]);
+  const idx = {};
+  headers.forEach((h,i) => idx[h.toLowerCase().trim()] = i);
+  const get = (cols,key) => (cols[idx[key]]||"").trim();
+
   const rows = [];
-  // Remove BOM and normalize line endings
-  const clean = text.replace(/^\uFEFF/, "").replace(/\r\n/g, "\n").replace(/\r/g, "\n");
-  const lines = clean.trim().split("\n").slice(1); // skip header
-  for(const line of lines){
-    if(!line.trim()) continue;
-    // Parse quoted CSV fields
-    const cols = [];
-    let cur = "", inQ = false;
-    for(let i=0; i<line.length; i++){
-      const c = line[i];
-      if(c==='"'){ inQ=!inQ; }
-      else if(c===','&&!inQ){ cols.push(cur.trim()); cur=""; }
-      else cur+=c;
-    }
-    cols.push(cur.trim());
-    const [id,hijri_day,hijri_month,hijri_year,gregorian_date,gregorian_label,note,confirmed,title,subtitle,guest,presenter,recording] = cols;
-    // Skip header row if accidentally included or empty rows
+  for(let i=1; i<lines.length; i++){
+    if(!lines[i].trim()) continue;
+    const cols = parseLine(lines[i]);
+    const id = get(cols,"id");
     if(!id || isNaN(Number(id))) continue;
-    const parts = (gregorian_date||"").trim().split("-").map(Number);
-    const [y,m,d] = parts;
+    const gd = get(cols,"gregorian_date").split("-").map(Number);
     rows.push({
       id:        Number(id),
-      day:       Number(hijri_day),
-      month:     (hijri_month||"").trim(),
-      year:      Number(hijri_year),
-      date:      new Date(y, m-1, d),
-      geo:       (gregorian_label||"").trim(),
-      note:      (note||"").trim(),
-      title:     (title||"").trim(),
-      subtitle:  (subtitle||"").trim(),
-      guest:     (guest||"").trim(),
-      presenter: (presenter||"").trim(),
-      recording: (recording||"").trim(),
+      day:       Number(get(cols,"hijri_day")),
+      month:     get(cols,"hijri_month"),
+      year:      Number(get(cols,"hijri_year")),
+      date:      new Date(gd[0], gd[1]-1, gd[2]),
+      geo:       get(cols,"gregorian_label"),
+      note:      get(cols,"note"),
+      title:     get(cols,"title"),
+      subtitle:  get(cols,"subtitle"),
+      guest:     get(cols,"guest"),
+      presenter: get(cols,"presenter"),
+      recording: get(cols,"recording"),
     });
   }
   return rows;
 }
-
 function hasDetails(m){
   return !!(m.title || m.subtitle || m.guest || m.presenter || m.recording);
 }
