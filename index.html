@@ -133,6 +133,7 @@ body{
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:12px;margin-bottom:8px}
 
 .card{
+  cursor:pointer;
   background:#FDFAF5;border:1px solid #DDD5C4;
   border-radius:16px;padding:20px 16px 14px;
   position:relative;overflow:hidden;transition:transform .2s;
@@ -547,9 +548,7 @@ function hasDetails(m){
   return !!(m.title||m.subtitle||m.guest||m.presenter||m.recording);
 }
 
-const NEXT = MEETINGS.find(m => m.date >= TODAY);
-const PAST_COUNT = MEETINGS.filter(m => m.date < TODAY).length;
-const DAYS_LEFT = NEXT ? Math.ceil((NEXT.date - TODAY) / 86400000) : 0;
+
 
 function status(m){
   if(m.date < TODAY) return "past";
@@ -701,8 +700,7 @@ function renderCards(){
       const st=status(m); const isNext=st==="next",isPast=st==="past";
       const topPad = isNext||m.note ? "28px" : "8px";
       const dividerBg = isNext ? "linear-gradient(90deg,transparent,#B79851,transparent)" : "#E2D8C8";
-      const clickable = hasDetails(m);
-      return `<div class="card${isPast?" past":""}${isNext?" next-mtg ng":""} fade" style="animation-delay:${i*0.05}s${clickable?';'+'cursor:pointer':''}" ${clickable?'onclick="openDetails('+String(m.id-1)+')"':''}>`
+      return `<div class="card${isPast?" past":""}${isNext?" next-mtg ng":""} fade" style="animation-delay:${i*0.05}s" onclick="openDetails(${m.id-1})">
         <div class="wm">${m.id}</div>
         ${isNext?`<div class="badge-next"><span class="pulse" style="width:4px;height:4px;border-radius:50%;background:#FDFAF5;display:inline-block"></span>القادم</div>`:""}
         ${isPast?`<div class="badge-done">✓</div>`:""}
