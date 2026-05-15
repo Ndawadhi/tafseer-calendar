@@ -338,6 +338,10 @@ body.dark .row-add{background:rgba(255,255,255,.04);border-color:rgba(255,255,25
 body.dark .row-add:hover{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.35)}
 body.dark footer{background:#141310;border-top-color:rgba(255,255,255,.038);color:rgba(184,174,158,.55)}
 body.dark .modal-box{background:#211F1A;border-color:rgba(255,255,255,.1);color:rgba(232,218,196,.9)}
+body.dark #details-modal .modal-box{background:#1D1B17}
+body.dark #dm-title{color:#C8AA63}
+body.dark #dm-subtitle,body.dark #dm-meta span:last-child{color:rgba(232,218,196,.75)}
+body.dark #details-modal [style*="height:1px"]{background:rgba(255,255,255,.08)}
 body.dark .modal-close{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.08);color:rgba(200,190,170,.7)}
 body.dark .modal-divider{background:rgba(255,255,255,.06)}
 body.dark .modal-note{color:rgba(125,116,104,.55)}
@@ -493,7 +497,7 @@ function parseCSV(text){
       else cur+=c;
     }
     cols.push(cur.trim());
-    const [id,hijri_day,hijri_month,hijri_year,gregorian_date,gregorian_label,note,,confirmed,title,subtitle,guest,presenter,recording] = cols;
+    const [id,hijri_day,hijri_month,hijri_year,gregorian_date,gregorian_label,note,confirmed,title,subtitle,guest,presenter,recording] = cols;
     if(!id) continue;
     const [y,m,d] = (gregorian_date||"").trim().split("-").map(Number);
     rows.push({
@@ -512,6 +516,10 @@ function parseCSV(text){
     });
   }
   return rows;
+}
+
+function hasDetails(m){
+  return !!(m.title || m.subtitle || m.guest || m.presenter || m.recording);
 }
 
 function computeGlobals(){
@@ -670,7 +678,8 @@ function renderCards(){
       const st=status(m); const isNext=st==="next",isPast=st==="past";
       const topPad = isNext||m.note ? "28px" : "8px";
       const dividerBg = isNext ? "linear-gradient(90deg,transparent,#B79851,transparent)" : "#E2D8C8";
-      return `<div class="card${isPast?" past":""}${isNext?" next-mtg ng":""} fade" style="animation-delay:${i*0.05}s">
+      const clickable = hasDetails(m);
+      return `<div class="card${isPast?" past":""}${isNext?" next-mtg ng":""} fade" style="animation-delay:${i*0.05}s${clickable?";cursor:pointer":""}" ${clickable?`onclick="openDetails(${m.id-1})"`:""}>
         <div class="wm">${m.id}</div>
         ${isNext?`<div class="badge-next"><span class="pulse" style="width:4px;height:4px;border-radius:50%;background:#fff;display:inline-block"></span>القادم</div>`:""}
         ${isPast?`<div class="badge-done">✓</div>`:""}
@@ -825,6 +834,70 @@ function renderOverview(){
   renderTimeline();
   renderOverview();
 })();
+</script>
+
+<!-- DETAILS MODAL -->
+<div class="modal-overlay" id="details-modal">
+  <div class="modal-box" style="max-width:400px">
+    <button class="modal-close" onclick="closeDetails()">×</button>
+    <div style="margin-bottom:18px">
+      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#A59C8D;margin-bottom:6px" id="dm-hijri"></div>
+      <div style="font-size:21px;font-weight:700;color:#B79851;line-height:1.3" id="dm-title"></div>
+      <div style="font-size:13.5px;color:#6F6A5F;margin-top:5px;line-height:1.5" id="dm-subtitle"></div>
+    </div>
+    <div style="height:1px;background:#DDD5C4;margin-bottom:16px"></div>
+    <div id="dm-meta" style="display:flex;flex-direction:column;gap:11px;margin-bottom:18px"></div>
+    <a id="dm-recording" href="#" target="_blank" rel="noopener"
+       style="display:none;align-items:center;justify-content:center;gap:8px;
+              background:rgba(183,152,81,.12);border:1px solid rgba(183,152,81,.30);
+              border-radius:12px;padding:12px;text-decoration:none;
+              color:#92763C;font-family:'IBM Plex Sans Arabic','Tajawal',sans-serif;
+              font-size:13px;font-weight:600;transition:filter .15s">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+      مشاهدة تسجيل اللقاء
+    </a>
+  </div>
+</div>
+
+<script>
+function openDetails(idx){
+  const m = MEETINGS[idx];
+  if(!m || !hasDetails(m)) return;
+
+  document.getElementById("dm-hijri").textContent =
+    ar(m.day) + " " + m.month + " " + ar(m.year) + " هـ  ·  " + m.geo;
+
+  document.getElementById("dm-title").textContent    = m.title    || "";
+  document.getElementById("dm-subtitle").textContent = m.subtitle || "";
+
+  const meta = document.getElementById("dm-meta");
+  meta.innerHTML = "";
+  const rows = [
+    {label:"الضيف",    val:m.guest},
+    {label:"المقدّم",  val:m.presenter},
+  ];
+  rows.forEach(r=>{
+    if(!r.val) return;
+    meta.innerHTML += `<div style="display:flex;gap:10px;align-items:flex-start">
+      <span style="font-size:10px;font-weight:700;letter-spacing:1px;color:#A59C8D;
+                   background:rgba(183,152,81,.1);border-radius:6px;padding:3px 8px;
+                   white-space:nowrap;margin-top:1px">${r.label}</span>
+      <span style="font-size:13.5px;color:#3E3A33;font-weight:500">${r.val}</span>
+    </div>`;
+  });
+
+  const rec = document.getElementById("dm-recording");
+  if(m.recording){ rec.href = m.recording; rec.style.display = "flex"; }
+  else { rec.style.display = "none"; }
+
+  document.getElementById("details-modal").classList.add("open");
+}
+function closeDetails(){
+  document.getElementById("details-modal").classList.remove("open");
+}
+document.getElementById("details-modal").addEventListener("click", e=>{
+  if(e.target === e.currentTarget) closeDetails();
+});
 </script>
 </body>
 </html>
