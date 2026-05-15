@@ -502,11 +502,24 @@ function parseCSV(text){
   const lines  = clean.trim().split("\n");
   if(lines.length < 2) return [];
 
-  // Map column names → indices (resilient to column order)
+  // Arabic ↔ English aliases
+  const aliases = {
+    "العنوان الأساسي":"title", "العنوان الاساسي":"title",
+    "العنوان الفرعي":"subtitle",
+    "اسم الضيف":"guest",
+    "اسم المقدم":"presenter", "اسم المقدّم":"presenter",
+    "رابط التسجيل":"recording",
+  };
+
   const headers = parseLine(lines[0]);
   const idx = {};
-  headers.forEach((h,i) => idx[h.toLowerCase().trim()] = i);
-  const get = (cols,key) => (cols[idx[key]]||"").trim();
+  headers.forEach((h,i) => {
+    const key = h.trim();
+    idx[key.toLowerCase()] = i;           // English keys
+    if(aliases[key]) idx[aliases[key]] = i; // Arabic → English alias
+  });
+
+  const get = (cols,key) => (cols[idx[key]] || "").trim();
 
   const rows = [];
   for(let i=1; i<lines.length; i++){
