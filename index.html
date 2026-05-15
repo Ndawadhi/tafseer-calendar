@@ -18,7 +18,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 ::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-thumb{background:rgba(183,152,81,.3);border-radius:4px}
+::-webkit-scrollbar-thumb{background:rgba(140,105,30,.3);border-radius:4px}
 
 body{
   font-family:'IBM Plex Sans Arabic','Tajawal',sans-serif;
@@ -30,7 +30,7 @@ body{
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
-@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(183,152,81,0)}50%{box-shadow:0 0 22px 3px rgba(183,152,81,.18)}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(160,118,20,0)}50%{box-shadow:0 0 22px 3px rgba(160,118,20,.22)}}
 
 .fade{animation:fadeUp .5s ease both}
 .pulse{animation:pulse 2s ease-in-out infinite}
@@ -43,145 +43,145 @@ body{
 .header{
   text-align:center;
   padding:36px 20px 24px;
-  border-bottom:1px solid #E2D8C8;
+  border-bottom: 1px solid #DDD5C4;
   background:#FDFAF5;
   position:relative;
 }
 .header img{width:88px;height:88px;object-fit:contain;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto}
-.header .yr{font-size:10px;letter-spacing:3px;color:#6F6A5F;font-weight:700;margin-bottom:8px}
+.header .yr{font-size:10px;letter-spacing:3px;color:rgba(110,80,20,.7);font-weight:700;margin-bottom:8px}
 .header h1{
   font-size:clamp(26px,5vw,40px);font-weight:700;line-height:1.2;
-  color:#B79851;
+  background:linear-gradient(135deg,#B79851,#B79851,#6b4c05);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
   margin-bottom:6px;
 }
-.header p{font-size:13px;color:#6F6A5F;font-weight:300}
+.header p{font-size:13px;color:rgba(70,50,15,.75);font-weight:300}
 
 /* ── Theme toggle ── */
 .toggle-btn{
   position:absolute;top:20px;left:20px;
   width:42px;height:23px;border-radius:100px;
-  background:rgba(183,152,81,.18);border:1px solid rgba(183,152,81,.30);
+  background:rgba(160,118,20,.2);border:1px solid rgba(140,100,15,.4);
   cursor:pointer;display:flex;align-items:center;
   padding:2px;transition:all .25s;
 }
 .toggle-thumb{
   width:17px;height:17px;border-radius:50%;
-  background:#B79851;box-shadow:0 1px 4px rgba(0,0,0,.15);
+  background:#C8AA63;box-shadow:0 1px 4px rgba(0,0,0,.25);
   transition:all .25s;display:flex;align-items:center;justify-content:center;
+  font-size:10px;
 }
-.toggle-thumb svg{display:block}
 
 /* ── Next meeting banner ── */
 .next-banner{
   max-width:600px;margin:18px auto 0;
-  background:rgba(183,152,81,.1);
-  border:1px solid rgba(183,152,81,.30);
+  background:rgba(160,118,20,.1);
+  border:1px solid rgba(130,90,10,.4);
   border-radius:14px;padding:15px 18px;
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
 }
-.next-banner .dot{width:9px;height:9px;border-radius:50%;background:#B79851;box-shadow:0 0 8px rgba(183,152,81,.45);flex-shrink:0}
-.next-banner .label{font-size:10px;color:#6F6A5F;font-weight:700;letter-spacing:1.5px;margin-bottom:3px}
+.next-banner .dot{width:9px;height:9px;border-radius:50%;background:#B79851;box-shadow:0 0 8px rgba(160,118,20,.55);flex-shrink:0}
+.next-banner .label{font-size:10px;color:rgba(110,80,20,.7);font-weight:700;letter-spacing:1.5px;margin-bottom:3px}
 .next-banner .date{font-size:15px;font-weight:700;color:#92763C}
-.next-banner .geo{font-size:11.5px;color:#6F6A5F;margin-top:2px}
+.next-banner .geo{font-size:11.5px;color:rgba(70,50,15,.7);margin-top:2px}
 .next-banner .days{font-size:34px;font-weight:900;color:#B79851;line-height:1}
-.next-banner .days-label{font-size:10.5px;color:#6F6A5F}
+.next-banner .days-label{font-size:10.5px;color:rgba(70,50,15,.65)}
 .add-next-btn{
   display:flex;flex-direction:column;align-items:center;gap:3px;
-  background:rgba(183,152,81,.12);border:1px solid rgba(183,152,81,.30);
+  background:rgba(160,118,20,.14);border:1px solid rgba(130,90,10,.4);
   border-radius:10px;padding:8px 12px;cursor:pointer;
   font-family:'IBM Plex Sans Arabic','Tajawal',sans-serif;font-size:11px;color:#92763C;
   text-decoration:none;transition:all .2s;
 }
-.add-next-btn:hover{background:rgba(183,152,81,.18)}
+.add-next-btn:hover{background:rgba(160,118,20,.22)}
 
 /* ── Export all ── */
 .export-bar{max-width:600px;margin:10px auto 0;padding:0 16px}
 .export-all-btn{
   display:flex;align-items:center;justify-content:center;gap:7px;
   width:100%;padding:9px;
-  background:#FDFAF5;border:1px solid #E8E0D0;
+  background:#FDFAF5;border:1px solid rgba(110,80,20,.3);
   border-radius:10px;cursor:pointer;
   font-family:'IBM Plex Sans Arabic','Tajawal',sans-serif;font-size:12px;font-weight:500;
-  color:#6F6A5F;transition:all .2s;text-decoration:none;
+  color:rgba(70,50,15,.7);transition:all .2s;text-decoration:none;
 }
-.export-all-btn:hover{background:rgba(183,152,81,.08);border-color:rgba(183,152,81,.35);color:#92763C}
+.export-all-btn:hover{background:rgba(160,118,20,.08);border-color:rgba(130,90,10,.5);color:#92763C}
 
 /* ── Progress ── */
 .prog-wrap{max-width:600px;margin:10px auto 0;padding:0 16px}
 .prog-row{display:flex;justify-content:space-between;margin-bottom:5px}
-.prog-row span{font-size:11px;color:#6F6A5F}
-.prog-row span:last-child{color:#6F6A5F;font-weight:600}
-.prog-bar{height:3px;background:#E2D8C8;border-radius:100px;overflow:hidden}
-.prog-fill{height:100%;background:linear-gradient(90deg,rgba(183,152,81,.5),#B79851);border-radius:100px}
+.prog-row span{font-size:11px;color:rgba(70,50,15,.65)}
+.prog-row span:last-child{color:rgba(110,80,20,.75);font-weight:600}
+.prog-bar{height:3px;background:rgba(0,0,0,.12);border-radius:100px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,rgba(160,118,20,.6),#B79851);border-radius:100px}
 
 /* ── View tabs ── */
 .tabs{display:flex;justify-content:center;gap:8px;padding:22px 16px 18px;flex-wrap:wrap}
 .tab{
   border:none;cursor:pointer;font-family:'IBM Plex Sans Arabic','Tajawal',sans-serif;
   font-size:13px;font-weight:500;padding:8px 20px;border-radius:100px;
-  background:#FDFAF5;border:1px solid #E8E0D0;
-  color:#6F6A5F;transition:all .2s;
+  background:#FDFAF5;border:1px solid rgba(110,80,20,.25);
+  color:rgba(70,50,15,.65);transition:all .2s;
 }
-.tab:hover{background:rgba(183,152,81,.1);color:#92763C}
-.tab.active{background:#B79851;color:#fff;font-weight:600;border-color:transparent;box-shadow:0 4px 20px rgba(183,152,81,.18)}
+.tab:hover{background:rgba(160,118,20,.08);color:#92763C}
+.tab.active{background:linear-gradient(135deg,#B79851,#92763C);color:#fff;font-weight:700;border-color:transparent}
 
 /* ── Cards grid ── */
 .year-div{display:flex;align-items:center;gap:12px;margin:8px 0 16px;opacity:.8}
 .year-div div{flex:1;height:1px}
-.year-div span{font-size:11px;font-weight:700;letter-spacing:2px;color:#6F6A5F;white-space:nowrap}
+.year-div span{font-size:11px;font-weight:700;letter-spacing:2px;color:rgba(110,80,20,.75);white-space:nowrap}
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:12px;margin-bottom:8px}
 
 .card{
   background:#FDFAF5;border:1px solid #DDD5C4;
   border-radius:16px;padding:20px 16px 14px;
-  position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;
-  box-shadow:0 1px 4px rgba(183,152,81,.08);
+  position:relative;overflow:hidden;transition:transform .2s;
 }
-.card:hover{transform:translateY(-3px);box-shadow:0 4px 16px rgba(183,152,81,.12);border-color:#C8BBAA}
-.card.past{opacity:.52;background:#F5F5F0}
-.card.next-mtg{background:rgba(183,152,81,.1);border:1px solid rgba(183,152,81,.35)}
+.card:hover{transform:translateY(-3px)}
+.card.past{opacity:.52;background:rgba(195,182,162,.55)}
+.card.next-mtg{background:rgba(180,138,30,.1);border:1px solid rgba(130,90,10,.55)}
 .card .wm{
   position:absolute;top:-12px;right:-4px;font-size:88px;font-weight:900;
   line-height:1;color:rgba(0,0,0,.04);user-select:none;direction:ltr;
 }
 .card .badge-next{
   position:absolute;top:11px;left:11px;display:flex;align-items:center;gap:4px;
-  background:#B79851;color:#fff;
+  background:linear-gradient(135deg,#B79851,#92763C);color:#fff;
   font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:100px;
 }
-.card .badge-done{position:absolute;top:12px;left:12px;color:#A59C8D;font-size:13px}
+.card .badge-done{position:absolute;top:12px;left:12px;color:rgba(110,80,20,.5);font-size:13px}
 .card .note-badge{
   position:absolute;top:11px;right:11px;
-  font-size:9px;color:#A48745;background:rgba(183,152,81,.12);
+  font-size:9px;color:rgba(110,80,20,.85);background:rgba(160,118,20,.14);
   border-radius:5px;padding:2px 6px;
 }
 .card .body{text-align:center}
 .card .day-num{font-size:56px;font-weight:700;line-height:1;margin-bottom:2px;color:#1F1F1F}
-.card.past .day-num{color:#A59C8D}
+.card.past .day-num{color:rgba(100,80,40,.4)}
 .card.next-mtg .day-num{color:#A48745}
-.card .month-name{font-size:14px;font-weight:600;margin-bottom:10px;color:#2C2820}
-.card.past .month-name{color:#A59C8D}
+.card .month-name{font-size:14px;font-weight:600;margin-bottom:10px;color:#1F1F1F}
+.card.past .month-name{color:rgba(100,80,40,.45)}
 .card.next-mtg .month-name{color:#A48745}
 .card .divider{width:28px;height:1px;margin:0 auto 9px}
-.card .geo-date{font-size:11.5px;color:#6F6A5F}
+.card .geo-date{font-size:11.5px;color:rgba(70,50,15,.7)}
 .card .yr-tag{
-  font-size:10px;color:#A59C8D;background:rgba(183,152,81,.1);
+  font-size:10px;color:rgba(110,80,20,.5);background:rgba(160,118,20,.1);
   border-radius:5px;padding:2px 7px;display:inline-block;margin-top:7px;
 }
 .add-cal-btn{
   display:flex;align-items:center;justify-content:center;gap:5px;
   width:100%;margin-top:10px;
-  background:rgba(183,152,81,.06);border:1px solid #E2D8C8;
+  background:rgba(0,0,0,.04);border:1px solid #E2D8C8;
   border-radius:8px;padding:7px;cursor:pointer;
-  font-family:'IBM Plex Sans Arabic','Tajawal',sans-serif;font-size:11px;color:#6F6A5F;
+  font-family:'IBM Plex Sans Arabic','Tajawal',sans-serif;font-size:11px;color:rgba(70,50,15,.6);
   text-decoration:none;transition:all .2s;
 }
-.add-cal-btn:hover{background:rgba(183,152,81,.1);border-color:rgba(183,152,81,.30);color:#92763C}
+.add-cal-btn:hover{background:rgba(160,118,20,.1);border-color:rgba(130,90,10,.4);color:#92763C}
 
 /* ── Timeline ── */
 .timeline{max-width:640px;margin:0 auto}
 .yr-label{display:flex;align-items:center;gap:10px;padding-right:34px;margin-bottom:14px}
-.yr-label span{font-size:10px;font-weight:700;letter-spacing:2px;color:#6F6A5F;white-space:nowrap}
+.yr-label span{font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(110,80,20,.65);white-space:nowrap}
 .tl-item{display:flex;margin-bottom:2px}
 .tl-item.past{opacity:.52}
 .spine{display:flex;flex-direction:column;align-items:center;width:34px;flex-shrink:0}
@@ -189,112 +189,109 @@ body{
 .spine-line{width:1px;flex:1;min-height:28px;margin-top:3px}
 .tl-card{
   flex:1;margin-right:14px;margin-bottom:9px;
-  background:#FDFAF5;border:1px solid #DDD5C4;
+  background:#FDFAF5;border:1px solid #E2D8C8;
   border-radius:13px;padding:14px 16px;
-  box-shadow:0 1px 4px rgba(183,152,81,.08);
 }
-.tl-card.next-mtg{background:rgba(183,152,81,.07);border:1px solid rgba(183,152,81,.30)}
+.tl-card.next-mtg{background:rgba(180,138,30,.07);border:1px solid rgba(130,90,10,.45)}
 .tl-card .tl-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px}
 .tl-card .tl-day{font-size:26px;font-weight:700;color:#1F1F1F}
-.tl-card.past .tl-day{color:#A59C8D}
+.tl-card.past .tl-day{color:rgba(100,80,40,.48)}
 .tl-card.next-mtg .tl-day{color:#A48745}
 .tl-card .tl-month{font-size:15px;font-weight:600;color:#1F1F1F}
-.tl-card.past .tl-month{color:#A59C8D}
+.tl-card.past .tl-month{color:rgba(100,80,40,.48)}
 .tl-card.next-mtg .tl-month{color:#A48745}
-.tl-card .tl-yr{font-size:11px;color:#A59C8D}
-.tl-card .tl-geo{font-size:11.5px;color:#6F6A5F;margin-top:3px}
-.tl-card .tl-note{font-size:10px;color:#6F6A5F;background:rgba(183,152,81,.1);padding:2px 6px;border-radius:5px}
+.tl-card .tl-yr{font-size:11px;color:rgba(80,60,20,.45)}
+.tl-card .tl-geo{font-size:11.5px;color:rgba(70,50,15,.68);margin-top:3px}
+.tl-card .tl-note{font-size:10px;color:rgba(110,80,20,.75);background:rgba(160,118,20,.1);padding:2px 6px;border-radius:5px}
 .tl-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
-.tl-bottom .tl-meta{display:flex;align-items:center;gap:5px;font-size:10.5px;color:#6F6A5F}
+.tl-bottom .tl-meta{display:flex;align-items:center;gap:5px;font-size:10.5px;color:rgba(80,60,20,.6)}
 .tl-bottom .tl-meta-dot{width:5px;height:5px;border-radius:50%}
 .tl-add{
   display:flex;align-items:center;gap:4px;
-  background:rgba(183,152,81,.06);border:1px solid #E2D8C8;
+  background:rgba(0,0,0,.04);border:1px solid #E2D8C8;
   border-radius:6px;padding:4px 9px;cursor:pointer;
-  font-family:'IBM Plex Sans Arabic','Tajawal',sans-serif;font-size:10.5px;color:#6F6A5F;
+  font-family:'IBM Plex Sans Arabic','Tajawal',sans-serif;font-size:10.5px;color:rgba(70,50,15,.6);
   text-decoration:none;transition:all .2s;
 }
-.tl-add:hover{background:rgba(183,152,81,.1);border-color:rgba(183,152,81,.30);color:#92763C}
+.tl-add:hover{background:rgba(160,118,20,.1);border-color:rgba(130,90,10,.4);color:#92763C}
 
 /* ── Overview ── */
 .overview-wrap{max-width:840px;margin:0 auto}
 .stats-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:18px}
-.stat-ring{flex:0 0 120px;height:120px;background:#FDFAF5;border:1px solid #E8E0D0;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
-.stat-box{flex:1 1 80px;min-width:80px;background:#FDFAF5;border:1px solid #E8E0D0;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:12px}
+.stat-ring{flex:0 0 120px;height:120px;background:#FDFAF5;border:1px solid #DDD5C4;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.stat-box{flex:1 1 80px;min-width:80px;background:#FDFAF5;border:1px solid #DDD5C4;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:12px}
 .stat-val{font-size:28px;font-weight:700}
-.stat-lbl{font-size:11px;color:#6F6A5F}
-.gantt-wrap{background:#FDFAF5;border:1px solid #E8E0D0;border-radius:16px;padding:20px 16px 18px}
-.gantt-title{font-size:12px;color:#6F6A5F;margin-bottom:18px;font-weight:500}
-.gantt-bar-container{position:relative;height:7px;background:#E2D8C8;border-radius:100px;margin-bottom:32px}
-.gantt-fill{position:absolute;right:0;top:0;height:100%;border-radius:100px;background:linear-gradient(90deg,rgba(183,152,81,.35),#B79851)}
-.today-line{position:absolute;top:-9px;bottom:-9px;width:2px;background:#B79851;border-radius:2px;box-shadow:0 4px 20px rgba(183,152,81,.18)}
-.today-label{position:absolute;top:-24px;right:50%;transform:translateX(50%);font-size:9.5px;color:#B79851;font-weight:700;background:#FDFAF5;padding:2px 7px;border-radius:4px;border:1px solid rgba(183,152,81,.30);white-space:nowrap}
+.stat-lbl{font-size:11px;color:rgba(70,50,15,.65)}
+.gantt-wrap{background:#FDFAF5;border:1px solid #DDD5C4;border-radius:16px;padding:20px 16px 18px}
+.gantt-title{font-size:12px;color:rgba(70,50,15,.65);margin-bottom:18px;font-weight:500}
+.gantt-bar-container{position:relative;height:7px;background:rgba(0,0,0,.1);border-radius:100px;margin-bottom:32px}
+.gantt-fill{position:absolute;right:0;top:0;height:100%;border-radius:100px;background:linear-gradient(90deg,rgba(160,118,20,.35),rgba(160,118,20,.65))}
+.today-line{position:absolute;top:-9px;bottom:-9px;width:2px;background:#B79851;border-radius:2px;box-shadow:0 0 8px rgba(160,118,20,.6)}
+.today-label{position:absolute;top:-24px;right:50%;transform:translateX(50%);font-size:9.5px;color:#B79851;font-weight:700;background:#FDFAF5;padding:2px 7px;border-radius:4px;border:1px solid rgba(160,118,20,.35);white-space:nowrap}
 .row-list{display:flex;flex-direction:column;gap:9px}
 .row-item{display:flex;align-items:center;gap:10px}
 .row-yr{width:32px;font-size:9px;text-align:center;border-radius:4px;padding:1px 2px;flex-shrink:0}
 .row-month{width:104px;font-size:11px;font-weight:500;flex-shrink:0;text-align:right}
-.row-track{flex:1;position:relative;height:3px;background:#E2D8C8;border-radius:100px}
+.row-track{flex:1;position:relative;height:3px;background:rgba(0,0,0,.08);border-radius:100px}
 .row-dot{position:absolute;top:50%;border-radius:50%}
-.row-add{width:26px;height:26px;border-radius:50%;flex-shrink:0;background:#FDFAF5;border:1px solid #E8E0D0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;text-decoration:none}
-.row-add:hover{background:rgba(183,152,81,.1);border-color:rgba(130,90,10,.35)}
+.row-add{width:26px;height:26px;border-radius:50%;flex-shrink:0;background:#FDFAF5;border:1px solid #E2D8C8;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;text-decoration:none}
+.row-add:hover{background:rgba(160,118,20,.1);border-color:rgba(130,90,10,.35)}
 
 /* ── Modal ── */
 .modal-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;display:none}
 .modal-overlay.open{display:flex}
-.modal-box{background:#FDFAF5;border:1px solid #E8E0D0;border-radius:22px;padding:28px 22px 24px;width:100%;max-width:370px;position:relative;box-shadow:0 40px 100px rgba(0,0,0,.2);max-height:90vh;overflow-y:auto}
-.modal-close{position:absolute;top:14px;left:14px;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.1);color:#6F6A5F;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:monospace;line-height:1}
-.modal-icon{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:13px;background:rgba(183,152,81,.1);border:1px solid rgba(183,152,81,.20);margin-bottom:11px}
+.modal-box{background:#FDFAF5;border:1px solid #E2D8C8;border-radius:22px;padding:28px 22px 24px;width:100%;max-width:370px;position:relative;box-shadow:0 40px 100px rgba(0,0,0,.2);max-height:90vh;overflow-y:auto}
+.modal-close{position:absolute;top:14px;left:14px;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.1);color:rgba(50,30,5,.55);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:monospace;line-height:1}
+.modal-icon{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:13px;background:rgba(160,118,20,.1);border:1px solid rgba(130,90,10,.22);margin-bottom:11px}
 .modal-head{text-align:center;margin-bottom:20px}
-.modal-sub{font-size:10px;color:#6F6A5F;font-weight:700;letter-spacing:1.5px;margin-bottom:5px}
+.modal-sub{font-size:10px;color:rgba(110,80,20,.65);font-weight:700;letter-spacing:1.5px;margin-bottom:5px}
 .modal-title{font-size:18px;font-weight:700;color:#A48745}
-.modal-geo{font-size:12px;color:#6F6A5F;margin-top:3px}
+.modal-geo{font-size:12px;color:rgba(70,50,15,.6);margin-top:3px}
 .prov-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
 .prov-item{display:flex;align-items:center;gap:12px;border-radius:12px;padding:11px 14px;text-decoration:none;color:#1F1F1F;font-family:'IBM Plex Sans Arabic','Tajawal',sans-serif;font-size:13.5px;font-weight:500;transition:filter .15s}
 .prov-item:hover{filter:brightness(1.08)}
 .prov-item .prov-name{flex:1}
 .modal-divider{height:1px;background:#E2D8C8;margin-bottom:14px}
-.export-all-link{display:flex;align-items:center;justify-content:center;gap:7px;background:rgba(183,152,81,.09);border:1px solid rgba(183,152,81,.25);border-radius:11px;padding:11px;text-decoration:none;color:#A48745;font-family:'IBM Plex Sans Arabic','Tajawal',sans-serif;font-size:12.5px;font-weight:600;transition:filter .15s}
+.export-all-link{display:flex;align-items:center;justify-content:center;gap:7px;background:rgba(160,118,20,.09);border:1px solid rgba(130,90,10,.3);border-radius:11px;padding:11px;text-decoration:none;color:#A48745;font-family:'IBM Plex Sans Arabic','Tajawal',sans-serif;font-size:12.5px;font-weight:600;transition:filter .15s}
 .export-all-link:hover{filter:brightness(1.1)}
-.modal-note{font-size:10px;color:#A59C8D;text-align:center;margin-top:12px}
+.modal-note{font-size:10px;color:rgba(90,65,20,.45);text-align:center;margin-top:12px}
 
 /* ── Bulk modal ── */
 .bulk-modal-box{max-width:400px}
-.bulk-top{display:flex;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:700;letter-spacing:1.5px;color:#6F6A5F;margin-bottom:5px}
+.bulk-top{display:flex;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(110,80,20,.65);margin-bottom:5px}
 .bulk-prov{display:flex;align-items:center;gap:10px;border-radius:12px;padding:11px 14px;margin-bottom:0}
 .bulk-prov-inner{flex:1}
 .bulk-prov-name{font-size:13px;font-weight:600;color:#1F1F1F}
-.bulk-prov-note{font-size:10.5px;color:#6F6A5F;margin-top:2px}
+.bulk-prov-note{font-size:10.5px;color:rgba(70,50,15,.65);margin-top:2px}
 .bulk-prov-btn{font-size:11px;font-weight:600;border-radius:7px;padding:4px 10px;text-decoration:none;transition:filter .15s;white-space:nowrap}
 .bulk-prov-btn:hover{filter:brightness(1.15)}
 
 /* ── Footer ── */
-footer{text-align:center;padding:18px;background:#FDFAF5;border-top:1px solid #DDD5C4;font-size:11px;color:#A59C8D;letter-spacing:.5px}
+footer{text-align:center;padding:18px;border-top: 1px solid #DDD5C4;font-size:11px;color:rgba(80,60,20,.45);letter-spacing:.5px}
 
 /* ── Dark mode ── */
 body.dark{background:#171613;color:rgba(232,218,196,.9)}
-body.dark .header{border-bottom-color:rgba(255,255,255,.055);background:#1D1B17}
-body.dark .header .yr{color:rgba(201,168,76,.6)}
-body.dark .header h1{background:linear-gradient(135deg,#e8c96b,#C8AA63,#9a6e25);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-body.dark .header p{color:rgba(184,174,158,.75)}
+body.dark .header{background:#1D1B17;border-bottom-color:rgba(255,255,255,.06);border-bottom-color:rgba(255,255,255,.055);background:#FDFAF5;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+body.dark .header p{color:rgba(150,130,100,.75)}
 body.dark .toggle-btn{background:rgba(201,168,76,.2);border-color:rgba(201,168,76,.4)}
 body.dark .toggle-thumb{background:#C8AA63}
 body.dark .next-banner{background:rgba(201,168,76,.07);border-color:rgba(201,168,76,.28)}
 body.dark .next-banner .dot{background:#C8AA63;box-shadow:0 0 8px rgba(201,168,76,.6)}
 body.dark .next-banner .label{color:rgba(201,168,76,.65)}
 body.dark .next-banner .date{color:#e8c96b}
-body.dark .next-banner .geo{color:rgba(184,174,158,.8)}
+body.dark .next-banner .geo{color:rgba(150,130,100,.8)}
 body.dark .next-banner .days{color:#C8AA63}
-body.dark .next-banner .days-label{color:rgba(184,174,158,.65)}
+body.dark .next-banner .days-label{color:rgba(150,130,100,.65)}
 body.dark .add-next-btn{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.35);color:#C8AA63}
 body.dark .add-next-btn:hover{background:rgba(201,168,76,.2)}
-body.dark .export-all-btn{background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.06);color:rgba(184,174,158,.7)}
+body.dark .export-all-btn{background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.06);color:rgba(150,130,100,.7)}
 body.dark .export-all-btn:hover{background:rgba(201,168,76,.07);border-color:rgba(201,168,76,.22);color:rgba(201,168,76,.8)}
-body.dark .prog-row span{color:rgba(184,174,158,.65)}
+body.dark .prog-row span{color:rgba(130,110,80,.65)}
 body.dark .prog-row span:last-child{color:rgba(201,168,76,.65)}
 body.dark .prog-bar{background:rgba(255,255,255,.05)}
 body.dark .tab{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.06);color:rgba(232,218,196,.65)}
 body.dark .tab:hover{background:rgba(255,255,255,.09);color:rgba(232,218,196,.95)}
-body.dark .tab.active{background:#C8AA63;color:#1F1F1F;border-color:transparent}
+body.dark .tab.active{background:linear-gradient(135deg,#C8AA63,#9a6e25);color:#07080f}
 body.dark .year-div div{background-color:rgba(201,168,76,.4) !important}
 body.dark .year-div span{color:rgba(201,168,76,.7)}
 body.dark .card{background:rgba(255,255,255,.032);border-color:rgba(255,255,255,.06);color:rgba(232,218,196,.9)}
@@ -303,30 +300,30 @@ body.dark .card.next-mtg{background:rgba(201,168,76,.065);border-color:rgba(201,
 body.dark .card .wm{color:rgba(255,255,255,.024)}
 body.dark .card.next-mtg .wm{color:rgba(201,168,76,.06)}
 body.dark .card .day-num{color:rgba(232,218,196,.9)}
-body.dark .card.past .day-num{color:rgba(125,116,104,.55)}
+body.dark .card.past .day-num{color:rgba(130,120,100,.42)}
 body.dark .card.next-mtg .day-num{color:#d4aa58}
 body.dark .card .month-name{color:rgba(232,218,196,.8)}
-body.dark .card.past .month-name{color:rgba(125,116,104,.55)}
+body.dark .card.past .month-name{color:rgba(130,120,100,.5)}
 body.dark .card.next-mtg .month-name{color:#e8c96b}
-body.dark .card .geo-date{color:rgba(184,174,158,.8)}
+body.dark .card .geo-date{color:rgba(150,130,100,.8)}
 body.dark .card .yr-tag{color:rgba(201,168,76,.45);background:rgba(201,168,76,.07)}
-body.dark .add-cal-btn{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.07);color:rgba(184,174,158,.7)}
+body.dark .add-cal-btn{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.07);color:rgba(150,130,100,.7)}
 body.dark .add-cal-btn:hover{background:rgba(201,168,76,.09);border-color:rgba(201,168,76,.28);color:#C8AA63}
 body.dark .tl-card{background:rgba(255,255,255,.022);border-color:rgba(255,255,255,.06)}
 body.dark .tl-card.next-mtg{background:rgba(201,168,76,.05);border-color:rgba(201,168,76,.3)}
 body.dark .tl-card .tl-day,.tl-card .tl-month{color:rgba(232,218,196,.88)}
-body.dark .tl-card.past .tl-day,.tl-card.past .tl-month{color:rgba(125,116,104,.55)}
+body.dark .tl-card.past .tl-day,.tl-card.past .tl-month{color:rgba(130,120,100,.48)}
 body.dark .tl-card.next-mtg .tl-day{color:#d4aa58}
 body.dark .tl-card.next-mtg .tl-month{color:#e8c96b}
-body.dark .tl-card .tl-yr{color:rgba(125,116,104,.45)}
-body.dark .tl-card .tl-geo{color:rgba(184,174,158,.75)}
-body.dark .tl-bottom .tl-meta{color:rgba(184,174,158,.65)}
-body.dark .tl-add{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.07);color:rgba(184,174,158,.7)}
+body.dark .tl-card .tl-yr{color:rgba(120,110,95,.45)}
+body.dark .tl-card .tl-geo{color:rgba(130,110,80,.75)}
+body.dark .tl-bottom .tl-meta{color:rgba(120,100,70,.65)}
+body.dark .tl-add{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.07);color:rgba(150,130,100,.7)}
 body.dark .tl-add:hover{background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.28);color:#C8AA63}
 body.dark .stat-ring,.stat-box{background:rgba(255,255,255,.022);border-color:rgba(255,255,255,.055)}
-body.dark .stat-lbl{color:rgba(184,174,158,.7)}
+body.dark .stat-lbl{color:rgba(150,130,100,.7)}
 body.dark .gantt-wrap{background:rgba(255,255,255,.022);border-color:rgba(255,255,255,.055)}
-body.dark .gantt-title{color:rgba(184,174,158,.75)}
+body.dark .gantt-title{color:rgba(150,130,100,.75)}
 body.dark .gantt-bar-container{background:rgba(255,255,255,.04)}
 body.dark .gantt-fill{background:linear-gradient(90deg,rgba(201,168,76,.25),rgba(201,168,76,.5))}
 body.dark .today-line{background:#C8AA63;box-shadow:0 0 8px rgba(201,168,76,.6)}
@@ -336,19 +333,19 @@ body.dark .row-month{color:rgba(200,190,170,.75)}
 body.dark .row-track{background:rgba(255,255,255,.028)}
 body.dark .row-add{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.07)}
 body.dark .row-add:hover{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.35)}
-body.dark footer{background:#141310;border-top-color:rgba(255,255,255,.038);color:rgba(184,174,158,.55)}
-body.dark .modal-box{background:#211F1A;border-color:rgba(255,255,255,.1);color:rgba(232,218,196,.9)}
+body.dark footer{border-top-color:rgba(255,255,255,.038);color:rgba(100,80,50,.55)}
 body.dark #details-modal .modal-box{background:#1D1B17}
-body.dark #dm-title{color:#C8AA63}
-body.dark #dm-subtitle,body.dark #dm-meta span:last-child{color:rgba(232,218,196,.75)}
-body.dark #details-modal [style*="height:1px"]{background:rgba(255,255,255,.08)}
-body.dark .modal-close{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.08);color:rgba(200,190,170,.7)}
+body.dark #dm-title{color:#C8AA63 !important}
+body.dark #dm-subtitle{color:rgba(232,218,196,.7) !important}
+body.dark #dm-meta span:last-child{color:rgba(232,218,196,.8)}
+body.dark #dm-divider{background:rgba(255,255,255,.07) !important}
 body.dark .prov-item{color:rgba(232,218,196,.9)}
-body.dark .prov-name{color:rgba(232,218,196,.9)}
+body.dark .modal-box{background:#1D1B17;border-color:rgba(255,255,255,.1);color:rgba(232,218,196,.9)}
+body.dark .modal-close{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.08);color:rgba(200,190,170,.7)}
 body.dark .modal-divider{background:rgba(255,255,255,.06)}
-body.dark .modal-note{color:rgba(125,116,104,.55)}
+body.dark .modal-note{color:rgba(100,90,70,.55)}
 body.dark .bulk-prov-name{color:rgba(232,218,196,.9)}
-body.dark .bulk-prov-note{color:rgba(184,174,158,.65)}
+body.dark .bulk-prov-note{color:rgba(150,130,100,.65)}
 
 @media(max-width:480px){
   .cards-grid{grid-template-columns:1fr 1fr}
@@ -360,13 +357,13 @@ body.dark .bulk-prov-note{color:rgba(184,174,158,.65)}
 </head>
 <body>
 
-<div id="bg-grad" style="position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 60% 40% at 15% 10%,rgba(183,152,81,.1) 0%,transparent 70%)"></div>
+<div id="bg-grad" style="position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 60% 40% at 15% 10%,rgba(160,118,20,.1) 0%,transparent 70%)"></div>
 
 <div style="position:relative;z-index:1">
 
 <!-- HEADER -->
 <div class="header">
-  <button class="toggle-btn" onclick="toggleTheme()" id="toggleBtn" title="تبديل المظهر" style="padding-right:2px;padding-left:20px">
+  <button class="toggle-btn" onclick="toggleTheme()" id="toggleBtn" style="padding-right:2px;padding-left:20px" title="تبديل المظهر">
     <div class="toggle-thumb" id="toggleThumb">
       <svg id="icon-sun" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" style="display:none"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
       <svg id="icon-moon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -475,13 +472,12 @@ body.dark .bulk-prov-note{color:rgba(184,174,158,.65)}
 </div>
 
 <script>
-const GOLD = "#B79851";
+const GOLD = "#C8AA63";
 const ar = n => String(n).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[+d]);
 const TODAY = new Date(2026, 4, 14);
 
-/* ── Google Sheets CSV ── */
+/* ── Google Sheets ── */
 const SHEET_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRLNN6o_qM098-WgeiTT-M-aeJaKetaxklCPZvrfvFTkTJkddEGNqrUge-tbyWLp6SPhTKKOJFc_tJd/pub?output=csv";
-
 let MEETINGS = [];
 let NEXT, PAST_COUNT, DAYS_LEFT;
 
@@ -489,7 +485,7 @@ function parseLine(line){
   const cols=[]; let cur="",inQ=false;
   for(let i=0;i<line.length;i++){
     const c=line[i];
-    if(c==='"\'){ inQ=!inQ; }
+    if(c==='"'){ inQ=!inQ; }
     else if(c===','&&!inQ){ cols.push(cur.trim()); cur=""; }
     else cur+=c;
   }
@@ -499,41 +495,36 @@ function parseLine(line){
 
 function parseCSV(text){
   const clean = text.replace(/^\uFEFF/,"").replace(/\r\n/g,"\n").replace(/\r/g,"\n");
-  const lines  = clean.trim().split("\n");
+  const lines = clean.trim().split("\n");
   if(lines.length < 2) return [];
-
-  // Arabic ↔ English aliases
   const aliases = {
-    "العنوان الأساسي":"title", "العنوان الاساسي":"title",
+    "العنوان الأساسي":"title","العنوان الاساسي":"title",
     "العنوان الفرعي":"subtitle",
     "اسم الضيف":"guest",
-    "اسم المقدم":"presenter", "اسم المقدّم":"presenter",
+    "اسم المقدم":"presenter","اسم المقدّم":"presenter",
     "رابط التسجيل":"recording",
   };
-
   const headers = parseLine(lines[0]);
   const idx = {};
   headers.forEach((h,i) => {
-    const key = h.trim();
-    idx[key.toLowerCase()] = i;           // English keys
-    if(aliases[key]) idx[aliases[key]] = i; // Arabic → English alias
+    const k = h.trim();
+    idx[k.toLowerCase()] = i;
+    if(aliases[k]) idx[aliases[k]] = i;
   });
-
-  const get = (cols,key) => (cols[idx[key]] || "").trim();
-
+  const get = (cols,key) => (cols[idx[key]]||"").trim();
   const rows = [];
-  for(let i=1; i<lines.length; i++){
+  for(let i=1;i<lines.length;i++){
     if(!lines[i].trim()) continue;
     const cols = parseLine(lines[i]);
     const id = get(cols,"id");
-    if(!id || isNaN(Number(id))) continue;
+    if(!id||isNaN(Number(id))) continue;
     const gd = get(cols,"gregorian_date").split("-").map(Number);
     rows.push({
       id:        Number(id),
       day:       Number(get(cols,"hijri_day")),
       month:     get(cols,"hijri_month"),
       year:      Number(get(cols,"hijri_year")),
-      date:      new Date(gd[0], gd[1]-1, gd[2]),
+      date:      new Date(gd[0],gd[1]-1,gd[2]),
       geo:       get(cols,"gregorian_label"),
       note:      get(cols,"note"),
       title:     get(cols,"title"),
@@ -545,15 +536,20 @@ function parseCSV(text){
   }
   return rows;
 }
-function hasDetails(m){
-  return !!(m.title || m.subtitle || m.guest || m.presenter || m.recording);
-}
 
 function computeGlobals(){
   NEXT       = MEETINGS.find(m => m.date >= TODAY);
   PAST_COUNT = MEETINGS.filter(m => m.date < TODAY).length;
-  DAYS_LEFT  = NEXT ? Math.ceil((NEXT.date - TODAY) / 86400000) : 0;
+  DAYS_LEFT  = NEXT ? Math.ceil((NEXT.date - TODAY)/86400000) : 0;
 }
+
+function hasDetails(m){
+  return !!(m.title||m.subtitle||m.guest||m.presenter||m.recording);
+}
+
+const NEXT = MEETINGS.find(m => m.date >= TODAY);
+const PAST_COUNT = MEETINGS.filter(m => m.date < TODAY).length;
+const DAYS_LEFT = NEXT ? Math.ceil((NEXT.date - TODAY) / 86400000) : 0;
 
 function status(m){
   if(m.date < TODAY) return "past";
@@ -596,17 +592,17 @@ const BULK_PROVIDERS = [
 
 /* ── Theme ── */
 let dark = true;
-document.body.classList.add("dark");
+document.body.classList.add('dark');
 function toggleTheme(){
   dark = !dark;
   document.body.classList.toggle("dark", dark);
-  const btn   = document.getElementById("toggleBtn");
+  const btn = document.getElementById("toggleBtn");
   const thumb = document.getElementById("toggleThumb");
-  btn.style.paddingRight = dark ? "2px"  : "20px";
+  btn.style.paddingRight = dark ? "2px" : "20px";
   btn.style.paddingLeft  = dark ? "20px" : "2px";
+  document.getElementById('icon-sun').style.display = dark ? 'none' : 'block';
+  document.getElementById('icon-moon').style.display = dark ? 'block' : 'none';
   thumb.style.background = dark ? "#C8AA63" : "#B79851";
-  document.getElementById("icon-sun").style.display  = dark ? "none"  : "block";
-  document.getElementById("icon-moon").style.display = dark ? "block" : "none";
 }
 
 /* ── View switching ── */
@@ -696,9 +692,9 @@ function renderCards(){
   const groups = [{year:1447,items:MEETINGS.filter(m=>m.year===1447)},{year:1448,items:MEETINGS.filter(m=>m.year===1448)}];
   el.innerHTML = groups.map(g=>`
     <div class="year-div">
-      <div style="background:linear-gradient(90deg,#C8BBAA,transparent)"></div>
+      <div style="background:linear-gradient(90deg,rgba(110,78,10,.5),transparent)"></div>
       <span>${ar(g.year)} هـ</span>
-      <div style="background:linear-gradient(270deg,#C8BBAA,transparent)"></div>
+      <div style="background:linear-gradient(270deg,rgba(110,78,10,.5),transparent)"></div>
     </div>
     <div class="cards-grid">
     ${g.items.map((m,i)=>{
@@ -706,9 +702,9 @@ function renderCards(){
       const topPad = isNext||m.note ? "28px" : "8px";
       const dividerBg = isNext ? "linear-gradient(90deg,transparent,#B79851,transparent)" : "#E2D8C8";
       const clickable = hasDetails(m);
-      return `<div class="card${isPast?" past":""}${isNext?" next-mtg ng":""} fade" style="animation-delay:${i*0.05}s${clickable?";cursor:pointer":""}" ${clickable?`onclick="openDetails(${m.id-1})"`:""}>
+      return `<div class="card${isPast?" past":""}${isNext?" next-mtg ng":""} fade" style="animation-delay:${i*0.05}s${clickable?';'+'cursor:pointer':''}" ${clickable?'onclick="openDetails('+String(m.id-1)+')"':''}>`
         <div class="wm">${m.id}</div>
-        ${isNext?`<div class="badge-next"><span class="pulse" style="width:4px;height:4px;border-radius:50%;background:#fff;display:inline-block"></span>القادم</div>`:""}
+        ${isNext?`<div class="badge-next"><span class="pulse" style="width:4px;height:4px;border-radius:50%;background:#FDFAF5;display:inline-block"></span>القادم</div>`:""}
         ${isPast?`<div class="badge-done">✓</div>`:""}
         ${m.note?`<div class="note-badge">${m.note}</div>`:""}
         <div class="body" style="padding-top:${topPad}">
@@ -733,18 +729,18 @@ function renderTimeline(){
     const st=status(m); const isNext=st==="next",isPast=st==="past",isLast=i===MEETINGS.length-1;
     const showYr = m.year!==prevYear; prevYear=m.year;
     const dotSize = isNext?14:9;
-    const dotBg = isNext?"linear-gradient(135deg,#C8AA63,#e8c96b)":isPast?"rgba(125,116,104,.55)":"rgba(200,170,99,.25)";
-    const dotShadow = isNext?"0 0 12px rgba(183,152,81,.45)":"none";
-    const lineBg = isPast?"linear-gradient(180deg,rgba(125,116,104,.4),rgba(183,152,81,.08))":"linear-gradient(180deg,#E2D8C8,rgba(183,152,81,.06))";
-    const metaDotBg = isNext?"#B79851":isPast?"rgba(125,116,104,.45)":"rgba(200,170,99,.2)";
+    const dotBg = isNext?"linear-gradient(135deg,#C8AA63,#e8c96b)":isPast?"rgba(130,100,50,.45)":"rgba(160,130,70,.3)";
+    const dotShadow = isNext?"0 0 12px rgba(160,118,20,.55)":"none";
+    const lineBg = isPast?"linear-gradient(180deg,rgba(130,100,50,.3),rgba(130,100,50,.1))":"linear-gradient(180deg,#E2D8C8,rgba(110,80,20,.05))";
+    const metaDotBg = isNext?"#B79851":isPast?"rgba(130,100,50,.38)":"rgba(160,130,70,.25)";
     return `
     ${showYr?`<div class="yr-label fade" style="margin-top:${i===0?"0":"6px"};animation-delay:${i*.04}s">
       <span>${ar(m.year)} هـ</span>
-      <div style="flex:1;height:1px;background:linear-gradient(270deg,#C8BBAA,transparent)"></div>
+      <div style="flex:1;height:1px;background:linear-gradient(270deg,rgba(110,78,10,.4),transparent)"></div>
     </div>`:""}
     <div class="tl-item${isPast?" past":""} fade" style="animation-delay:${i*.04}s">
       <div class="spine">
-        <div class="spine-dot" style="width:${dotSize}px;height:${dotSize}px;background:${dotBg};box-shadow:${dotShadow};border:${isNext?"2px solid rgba(183,152,81,.35)":"none"}"></div>
+        <div class="spine-dot" style="width:${dotSize}px;height:${dotSize}px;background:${dotBg};box-shadow:${dotShadow};border:${isNext?"2px solid rgba(160,118,20,.4)":"none"}"></div>
         ${!isLast?`<div class="spine-line" style="background:${lineBg}"></div>`:""}
       </div>
       <div class="tl-card${isNext?" next-mtg":""}">
@@ -756,8 +752,8 @@ function renderTimeline(){
             <div class="tl-geo">${m.geo}</div>
           </div>
           <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
-            ${isNext?`<span style="font-size:9.5px;font-weight:800;background:#B79851;color:#fff;padding:2px 8px;border-radius:100px">القادم</span>`:""}
-            ${isPast?`<span style="font-size:11px;color:#C8BBAA">✓</span>`:""}
+            ${isNext?`<span style="font-size:9.5px;font-weight:800;background:linear-gradient(135deg,#B79851,#92763C);color:#fff;padding:2px 8px;border-radius:100px">القادم</span>`:""}
+            ${isPast?`<span style="font-size:11px;color:rgba(110,80,20,.4)">✓</span>`:""}
             ${m.note?`<span class="tl-note">${m.note}</span>`:""}
           </div>
         </div>
@@ -790,18 +786,18 @@ function renderOverview(){
     <div class="stats-row">
       <div class="stat-ring">
         <svg width="68" height="68" viewBox="0 0 80 80">
-          <circle cx="40" cy="40" r="30" fill="none" stroke="rgba(183,152,81,.12)" stroke-width="5"/>
+          <circle cx="40" cy="40" r="30" fill="none" stroke="rgba(110,80,20,.12)" stroke-width="5"/>
           <circle cx="40" cy="40" r="30" fill="none" stroke="url(#gr)" stroke-width="5"
             stroke-dasharray="${circ}" stroke-dashoffset="${dashOff}"
             stroke-linecap="round" transform="rotate(-90 40 40)"/>
           <defs><linearGradient id="gr" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#b8920a"/><stop offset="100%" stop-color="#e8c96b"/>
+            <stop offset="0%" stop-color="#B79851"/><stop offset="100%" stop-color="#e8c96b"/>
           </linearGradient></defs>
           <text x="40" y="45" text-anchor="middle" fill="#A48745" font-size="14" font-weight="700" font-family="Tajawal">${ar(donePct)}٪</text>
         </svg>
         <div class="stat-lbl">اكتمل</div>
       </div>
-      ${[{l:"مضت",v:ar(PAST_COUNT),c:"#6F6A5F"},{l:"قادمة",v:ar(14-PAST_COUNT),c:"#A48745"},{l:"الإجمالي",v:ar(14),c:"#3E3A33"}].map(s=>`
+      ${[{l:"مضت",v:ar(PAST_COUNT),c:"rgba(110,80,20,.65)"},{l:"قادمة",v:ar(14-PAST_COUNT),c:"#A48745"},{l:"الإجمالي",v:ar(14),c:"rgba(30,20,5,.7)"}].map(s=>`
       <div class="stat-box"><div class="stat-val" style="color:${s.c}">${s.v}</div><div class="stat-lbl">${s.l}</div></div>
       `).join("")}
     </div>`;
@@ -809,17 +805,17 @@ function renderOverview(){
   const rowsHtml = MEETINGS.map((m,i)=>{
     const st=status(m); const isNext=st==="next",isPast=st==="past";
     const x=((m.date.getTime()-start)/span)*100;
-    const yrColor = m.year===1447 ? "#C8BBAA" : "#6F6A5F";
-    const yrBg = m.year===1447 ? "rgba(183,152,81,.08)" : "rgba(183,152,81,.05)";
-    const monthColor = isNext?"#A48745":isPast?"#A59C8D":"#3E3A33";
-    const dotColor = isPast?"rgba(125,116,104,.55)":isNext?"#B79851":"rgba(200,170,99,.25)";
-    const dotShadow = isNext?"0 0 8px rgba(183,152,81,.5)":"none";
+    const yrColor = m.year===1447 ? "rgba(110,78,10,.5)" : "rgba(60,100,140,.5)";
+    const yrBg = m.year===1447 ? "rgba(160,118,20,.08)" : "rgba(100,160,200,.07)";
+    const monthColor = isNext?"#A48745":isPast?"rgba(100,80,40,.55)":"rgba(50,35,10,.7)";
+    const dotColor = isPast?"rgba(130,100,50,.45)":isNext?"#B79851":"rgba(140,110,40,.35)";
+    const dotShadow = isNext?"0 0 8px rgba(160,118,20,.65)":"none";
     const dotSize = isNext?9:6;
     return `<div class="row-item" style="opacity:${isPast?.5:1}">
       <div class="row-yr" style="color:${yrColor};background:${yrBg}">${ar(m.year)}</div>
       <div class="row-month" style="color:${monthColor}">${m.month}</div>
       <div class="row-track">
-        <div style="position:absolute;right:0;top:0;height:100%;width:${x}%;border-radius:100px;background:${isPast?"rgba(125,116,104,.15)":isNext?"rgba(183,152,81,.15)":"transparent"}"></div>
+        <div style="position:absolute;right:0;top:0;height:100%;width:${x}%;border-radius:100px;background:${isPast?"rgba(130,100,50,.14)":isNext?"rgba(160,118,20,.18)":"transparent"}"></div>
         <div class="row-dot" style="right:${Math.min(98,x)}%;transform:translate(50%,-50%);width:${dotSize}px;height:${dotSize}px;background:${dotColor};box-shadow:${dotShadow}"></div>
       </div>
       <a class="row-add" onclick="openModal(${m.id-1})">
@@ -838,7 +834,7 @@ function renderOverview(){
         </div>
         ${MEETINGS.map(m=>{
           const st=status(m); const x=((m.date.getTime()-start)/span)*100;
-          return `<div style="position:absolute;top:50%;right:${Math.min(98,x)}%;transform:translate(50%,-50%);width:${st==="next"?11:7}px;height:${st==="next"?11:7}px;border-radius:50%;z-index:2;background:${st==="past"?"rgba(125,116,104,.55)":st==="next"?"#B79851":"rgba(200,170,99,.2)"};box-shadow:${st==="next"?"0 0 10px rgba(183,152,81,.5)":"none"};border:${st==="next"?"2px solid rgba(160,118,20,.5)":"none"}"></div>`;
+          return `<div style="position:absolute;top:50%;right:${Math.min(98,x)}%;transform:translate(50%,-50%);width:${st==="next"?11:7}px;height:${st==="next"?11:7}px;border-radius:50%;z-index:2;background:${st==="past"?"rgba(130,100,50,.45)":st==="next"?"#B79851":"rgba(140,110,40,.32)"};box-shadow:${st==="next"?"0 0 10px rgba(160,118,20,.65)":"none"};border:${st==="next"?"2px solid rgba(160,118,20,.5)":"none"}"></div>`;
         }).join("")}
       </div>
       <div class="row-list">${rowsHtml}</div>
@@ -846,14 +842,13 @@ function renderOverview(){
 }
 
 /* ── Init ── */
-(async () => {
-  try {
+/* ── Init ── */
+(async()=>{
+  try{
     const res  = await fetch(SHEET_CSV);
     const text = await res.text();
     MEETINGS   = parseCSV(text);
-  } catch(e) {
-    console.error("تعذّر تحميل البيانات:", e);
-  }
+  }catch(e){ console.error("CSV error:",e); }
   computeGlobals();
   renderBanner();
   renderProgress();
@@ -866,21 +861,23 @@ function renderOverview(){
 <!-- DETAILS MODAL -->
 <div class="modal-overlay" id="details-modal">
   <div class="modal-box" style="max-width:400px">
-    <button class="modal-close" onclick="closeDetails()">×</button>
+    <button class="modal-close" onclick="closeDetails()">&#215;</button>
     <div style="margin-bottom:18px">
       <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#A59C8D;margin-bottom:6px" id="dm-hijri"></div>
       <div style="font-size:21px;font-weight:700;color:#B79851;line-height:1.3" id="dm-title"></div>
-      <div style="font-size:13.5px;color:#6F6A5F;margin-top:5px;line-height:1.5" id="dm-subtitle"></div>
+      <div style="font-size:13px;color:#6F6A5F;margin-top:5px;line-height:1.6" id="dm-subtitle"></div>
     </div>
-    <div style="height:1px;background:#DDD5C4;margin-bottom:16px"></div>
+    <div style="height:1px;background:#DDD5C4;margin-bottom:16px" id="dm-divider"></div>
     <div id="dm-meta" style="display:flex;flex-direction:column;gap:11px;margin-bottom:18px"></div>
     <a id="dm-recording" href="#" target="_blank" rel="noopener"
        style="display:none;align-items:center;justify-content:center;gap:8px;
               background:rgba(183,152,81,.12);border:1px solid rgba(183,152,81,.30);
               border-radius:12px;padding:12px;text-decoration:none;
-              color:#92763C;font-family:'IBM Plex Sans Arabic','Tajawal',sans-serif;
-              font-size:13px;font-weight:600;transition:filter .15s">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+              color:#92763C;font-family:inherit;font-size:13px;font-weight:600">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="12" cy="12" r="10"/>
+        <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/>
+      </svg>
       مشاهدة تسجيل اللقاء
     </a>
   </div>
@@ -890,40 +887,31 @@ function renderOverview(){
 function openDetails(idx){
   const m = MEETINGS[idx];
   if(!m || !hasDetails(m)) return;
-
-  document.getElementById("dm-hijri").textContent =
-    ar(m.day) + " " + m.month + " " + ar(m.year) + " هـ  ·  " + m.geo;
-
+  const ar = n => String(n).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[+d]);
+  document.getElementById("dm-hijri").textContent = ar(m.day)+" "+m.month+" "+ar(m.year)+"هـ  ·  "+m.geo;
   document.getElementById("dm-title").textContent    = m.title    || "";
   document.getElementById("dm-subtitle").textContent = m.subtitle || "";
-
+  document.getElementById("dm-subtitle").style.display = m.subtitle ? "" : "none";
+  document.getElementById("dm-divider").style.display  = (m.guest||m.presenter) ? "" : "none";
   const meta = document.getElementById("dm-meta");
   meta.innerHTML = "";
-  const rows = [
-    {label:"الضيف",    val:m.guest},
-    {label:"المقدّم",  val:m.presenter},
-  ];
-  rows.forEach(r=>{
+  [{label:"الضيف",val:m.guest},{label:"المقدّم",val:m.presenter}].forEach(r=>{
     if(!r.val) return;
-    meta.innerHTML += `<div style="display:flex;gap:10px;align-items:flex-start">
-      <span style="font-size:10px;font-weight:700;letter-spacing:1px;color:#A59C8D;
-                   background:rgba(183,152,81,.1);border-radius:6px;padding:3px 8px;
-                   white-space:nowrap;margin-top:1px">${r.label}</span>
+    meta.innerHTML += `<div style="display:flex;gap:10px;align-items:center">
+      <span style="font-size:10px;font-weight:700;letter-spacing:1px;color:#A59C8D;background:rgba(183,152,81,.1);border-radius:6px;padding:3px 8px;white-space:nowrap">${r.label}</span>
       <span style="font-size:13.5px;color:#3E3A33;font-weight:500">${r.val}</span>
     </div>`;
   });
-
   const rec = document.getElementById("dm-recording");
-  if(m.recording){ rec.href = m.recording; rec.style.display = "flex"; }
-  else { rec.style.display = "none"; }
-
+  if(m.recording){ rec.href=m.recording; rec.style.display="flex"; }
+  else { rec.style.display="none"; }
   document.getElementById("details-modal").classList.add("open");
 }
 function closeDetails(){
   document.getElementById("details-modal").classList.remove("open");
 }
-document.getElementById("details-modal").addEventListener("click", e=>{
-  if(e.target === e.currentTarget) closeDetails();
+document.getElementById("details-modal").addEventListener("click",e=>{
+  if(e.target===e.currentTarget) closeDetails();
 });
 </script>
 </body>
