@@ -343,6 +343,8 @@ body.dark #dm-title{color:#C8AA63}
 body.dark #dm-subtitle,body.dark #dm-meta span:last-child{color:rgba(232,218,196,.75)}
 body.dark #details-modal [style*="height:1px"]{background:rgba(255,255,255,.08)}
 body.dark .modal-close{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.08);color:rgba(200,190,170,.7)}
+body.dark .prov-item{color:rgba(232,218,196,.9)}
+body.dark .prov-name{color:rgba(232,218,196,.9)}
 body.dark .modal-divider{background:rgba(255,255,255,.06)}
 body.dark .modal-note{color:rgba(125,116,104,.55)}
 body.dark .bulk-prov-name{color:rgba(232,218,196,.9)}
@@ -485,9 +487,12 @@ let NEXT, PAST_COUNT, DAYS_LEFT;
 
 function parseCSV(text){
   const rows = [];
-  const lines = text.trim().split("\n").slice(1);
+  // Remove BOM and normalize line endings
+  const clean = text.replace(/^\uFEFF/, "").replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+  const lines = clean.trim().split("\n").slice(1); // skip header
   for(const line of lines){
-    // handle quoted fields (Google Sheets wraps commas in quotes)
+    if(!line.trim()) continue;
+    // Parse quoted CSV fields
     const cols = [];
     let cur = "", inQ = false;
     for(let i=0; i<line.length; i++){
@@ -498,8 +503,10 @@ function parseCSV(text){
     }
     cols.push(cur.trim());
     const [id,hijri_day,hijri_month,hijri_year,gregorian_date,gregorian_label,note,confirmed,title,subtitle,guest,presenter,recording] = cols;
-    if(!id) continue;
-    const [y,m,d] = (gregorian_date||"").trim().split("-").map(Number);
+    // Skip header row if accidentally included or empty rows
+    if(!id || isNaN(Number(id))) continue;
+    const parts = (gregorian_date||"").trim().split("-").map(Number);
+    const [y,m,d] = parts;
     rows.push({
       id:        Number(id),
       day:       Number(hijri_day),
